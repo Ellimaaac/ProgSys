@@ -1,4 +1,4 @@
-// include
+// Libraries
 
 #include <unistd.h>
 #include <string.h>
@@ -12,9 +12,7 @@
 
 // define
 #define msg_bienvenue "Bienvenue dans ENSEA Shell.\nPour quitter, tapez 'exit'. \n"
-#define msg_enseash "enseash% "
-#define msg_exit "Bye bye ...\n"
-#define MAXSIZE 1024
+#define msg_enseash "enseash%"
 
-//fonction
+//fonction of welcome message
 void accueil(void);
