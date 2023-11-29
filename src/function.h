@@ -16,4 +16,5 @@
 
 //fonction of welcome message
 void welcome(void);
+
 void execut(char commande[MAXSIZE]);

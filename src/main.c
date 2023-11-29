@@ -1,5 +1,5 @@
-#include "fonction.h"
-#include "fonction.c"
+#include "function.h"
+#include "function_q5.c"
 
 int main(){
 	
