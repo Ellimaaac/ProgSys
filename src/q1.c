@@ -3,8 +3,8 @@
 
 int main(){
 	
-
-	accueil();
+	//Call function
+	welcome();
 	
 	return 1;
 	}

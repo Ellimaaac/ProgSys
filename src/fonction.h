@@ -1,5 +1,4 @@
 // Libraries
-
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
@@ -11,8 +10,8 @@
 #include <sys/stat.h>
 
 // define
-#define msg_bienvenue "Bienvenue dans ENSEA Shell.\nPour quitter, tapez 'exit'. \n"
+#define msg_welcome "Bienvenue dans ENSEA Shell.\nPour quitter, tapez 'exit'. \n"
 #define msg_enseash "enseash%"
 
 //fonction of welcome message
-void accueil(void);
+void welcome(void);
