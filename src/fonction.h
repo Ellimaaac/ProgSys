@@ -12,6 +12,8 @@
 // define
 #define msg_welcome "Bienvenue dans ENSEA Shell.\nPour quitter, tapez 'exit'. \n"
 #define msg_enseash "enseash%"
+#define MAXSIZE 1024
 
 //fonction of welcome message
 void welcome(void);
+void execut(char commande[MAXSIZE]);

@@ -6,3 +6,8 @@ void welcome() {
 	write(STDOUT_FILENO, msg_welcome, strlen(msg_welcome));
 	write(STDOUT_FILENO, msg_enseash, strlen(msg_enseash));
 }
+
+void execut(char commande[MAXSIZE]){
+	execlp(commande,commande, NULL);
+	exit(EXIT_FAILURE);
+}
