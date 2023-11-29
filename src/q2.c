@@ -1,5 +1,7 @@
 #include "fonction.h"
 
+
+
 int main(void) {
     int status;
     int nbChar;
@@ -30,6 +32,7 @@ int main(void) {
     // Child process
     if (ret == 0) {
         execlp(commande, commande, NULL); //exe child 
+        // n'arrive jamais car excelp sort duu prog
         perror("execlp"); // if fails print error msg
         exit(EXIT_FAILURE);
     } 
@@ -37,6 +40,7 @@ int main(void) {
     else {
 		// Wait for the child process to finish
         wait(&status);
+        input_length--;
     }
 
     return 0;
