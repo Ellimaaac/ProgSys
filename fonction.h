@@ -11,7 +11,7 @@
 #include <sys/stat.h>
 
 // define
-#define msg_bienvenue "Bienvenue dans le Shell ENSEA.\nPour quitter, tapez 'exit'. \n"
+#define msg_bienvenue "Bienvenue dans ENSEA Shell.\nPour quitter, tapez 'exit'. \n"
 #define msg_enseash "enseash% "
 #define msg_exit "Bye bye ...\n"
 #define MAXSIZE 1024

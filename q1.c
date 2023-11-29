@@ -5,6 +5,6 @@ int main(){
 	
 
 	accueil();
-
+	
 	return 1;
 	}
