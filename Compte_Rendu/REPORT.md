@@ -54,7 +54,7 @@
 > On place donc le début du timer avant le fork et la fin du timer lorsque le processus père a finit d'attendre le fils donc que celui-ci a finit de travailler. Comme cela on a le temps que tout marche correctement. On convertit le temps ensuite en ms pour cque cela soit plus aprlant qu'en ns. 
 
 >[!NOTE]
->Après avoir testé la fonction la fonction ls dure 0ms (donc très peu)  
+>Après avoir testé la fonction, la fonction ls dure 0ms (donc très peu)  
 >Fortune avec peu de texte ~3ms  
 >Fortune avec un gros texte ~15ms  
 
