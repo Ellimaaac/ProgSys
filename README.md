@@ -13,7 +13,9 @@ TP de programmation syteme : Weidle &amp; Lanfredi
 > 29/11 -> Création du Github, Organisation du github  
 - [x] Question 1 :tada:  
 - [x] Question 2 :tada:  
-- [ ] Question 3  
+- [x] Question 3 :tada:
+- [x] Question 4 :tada:
+- [x] Question 5 :tada:
 
 ## Organisation du Github
 >[!IMPORTANT]
