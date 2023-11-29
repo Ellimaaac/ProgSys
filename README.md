@@ -22,6 +22,7 @@ TP de programmation syteme : Weidle &amp; Lanfredi
     
 ### Fichier gitignore
 [!NOTE]
+> Docs .gitignore
 > celui-ci a été écrit pour ne pas avoir à gérer les captures d'écran 
 > les fichiers de compilations et programmes générées par gcc
 > autres fichiers inutiles 
