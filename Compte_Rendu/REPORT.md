@@ -9,7 +9,7 @@
 >[!NOTE]
 >Le début de l'interpreteur sera enseash%   
 >De même il n'est pas possible de quitter autre que Ctrl+C cr nous n'avons pas configuré le exit (Q3)  
-![Screenshot](capture/Q1.png)
+![Screenshot](../capture/Q1.png)
 
 ### Question 2 : 
 
@@ -21,7 +21,7 @@
 >[!WARNING]
 >Ici le exit ne fonctionne toujours pas on doit utiliser Ctrl+C  
 
-![Screenshot](capture/Q2.png)
+![Screenshot](../capture/Q2.png)
 
 ### Question 3 : 
 
@@ -32,7 +32,7 @@
 >commande[input_length - 1] = '\0';   
 >Le test sera inefficace car la comparaison avec la chaine de charactères sera toujours fausse car elle ne se finti aps par '/0'  
 
-![Screenshot](capture/Q3.png)
+![Screenshot](../capture/Q3.png)
 
 ### Question 4 : 
 
@@ -41,7 +41,7 @@
 >[!CAUTION]
 >Nous avons particulièrement testé pour les exit status mais en ce qui concerne du signal nous n'avons pas éssayé a ce stade si le coté signal amrche correctement.  
 
-![Screenshot](capture/Q4.png)
+![Screenshot](../capture/Q4.png)
 
 ### Question 5 : 
 
@@ -58,4 +58,4 @@
 >Fortune avec peu de texte ~3ms  
 >Fortune avec un gros texte ~15ms  
 
-![Screenshot](capture/Q5.png)
+![Screenshot](../capture/Q5.png)
