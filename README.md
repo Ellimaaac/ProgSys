@@ -2,8 +2,10 @@
 TP de programmation syteme : Weidle &amp; Lanfredi 
 
 ## [Compte Rendu du TP ](Compte_Rendu/REPORT.md)
-    > Le compte rendu du TP est écrit dans le dossier Compte_Rendu avec les captures d'écran justificatives dans le dossier capture
-    > On tiendra ci-joint le journal de bord de l'avancée du TP :
+
+>[!IMPORTANT]
+> Le compte rendu du TP est écrit dans le dossier Compte_Rendu avec les captures d'écran justificatives dans le dossier capture
+> On tiendra ci-joint le journal de bord de l'avancée du TP :
 
  ### Journal de Bord
 
@@ -21,7 +23,7 @@ TP de programmation syteme : Weidle &amp; Lanfredi
 > captures -> Captures d'écran du compte rendu...
     
 ### Fichier gitignore
-[!NOTE]
+>[!NOTE]
 > Docs .gitignore
 > celui-ci a été écrit pour ne pas avoir à gérer les captures d'écran 
 > les fichiers de compilations et programmes générées par gcc
