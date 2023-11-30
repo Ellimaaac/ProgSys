@@ -8,7 +8,7 @@
 
 >[!NOTE]
 >Le début de l'interpreteur sera enseash%   
->De même il n'est pas possible de quitter autre que Ctrl+C cr nous n'avons pas configuré le exit (Q3)  
+>De même il n'est pas possible de quitter le programme car nous n'avons pas configuré l'exit (Q3). On doit donc utiliser Ctrl+C.
 ![Screenshot](../capture/Q1.png)
 
 ### Question 2 : 
@@ -26,6 +26,7 @@
 ### Question 3 : 
 
 > Dans cette question ajoute seulement de quoi sortir de notre programme sans avoir à utiliser le Ctrl+C. On va donc tester si la commande rentrée est "exit". On souhaite donc le placer avant le fork histoire d'éviter à fork de facon inutile...  
+>On voit deux exit sur le screen plus bas un réalisé avec la commande "exit" et l'autre avec la commande Ctrl+D.  
 
 >[!WARNING]
 >Il faut faire attention car on le compare à "exit" qui est une chaine de charactères. Par conséquent si on le place avant   
@@ -36,10 +37,10 @@
 
 ### Question 4 : 
 
-> Afin d'ecrire l'exit status et le signal information on utilise ce qui est présent dans le cour avec WEXITSTATUS ainsi que WIFSIGNALED  
+> Afin d'ecrire l'exit status et le signal information on s'aide du cour avec WEXITSTATUS ainsi que WIFSIGNALED. 
 
 >[!CAUTION]
->Nous avons particulièrement testé pour les exit status mais en ce qui concerne du signal nous n'avons pas éssayé a ce stade si le coté signal amrche correctement.  
+>Nous avons particulièrement testé pour les exit status mais en ce qui concerne du signal nous n'avons pas éssayé actuellement si tout marche correctement.  
 
 ![Screenshot](../capture/Q4.png)
 
