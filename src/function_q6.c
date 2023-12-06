@@ -71,6 +71,8 @@ void welcome() {
                     args[arg_count++] = token;
                     token = strtok(NULL, " ");
                 }
+
+                // We putt NULL to indicate that this is the end in the list of args. 
                 args[arg_count] = NULL;
 
                 execvp(args[0], args);
