@@ -143,10 +143,10 @@ void welcome() {
                     }
                 }
 
-                execvp(args[0], args);
+                /* execvp(args[0], args);
                 // If execvp fails, print an error message
                 perror("execvp");
-                exit(EXIT_FAILURE);
+                exit(EXIT_FAILURE); */
             }
         } else {
             // Wait for the child process to finish
