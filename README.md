@@ -16,7 +16,11 @@ TP de programmation syteme : Weidle &amp; Lanfredi
 - [x] Question 3 :tada:
 - [x] Question 4 :tada:
 - [x] Question 5 :tada:
-
+>[!NOTE]
+> 06/12 -> Continuation du TP de synthèse
+- [x] Question 6 :tada:
+- [x] Question 7 :tada:
+      
 ## Organisation du Github
 >[!IMPORTANT]
 > Le github s'organise en trois dossiers  
