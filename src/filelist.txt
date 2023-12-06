@@ -1,5 +1,4 @@
-camcam.txt
-cam.txt
+filelist.txt
 function.h
 function_q1.c
 function_q2.c
@@ -11,4 +10,3 @@ function_q7.c
 function_q8.c
 main.c
 prog
-prrog
