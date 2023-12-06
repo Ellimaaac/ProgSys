@@ -62,10 +62,27 @@
 ![Screenshot](../capture/Q5.png)
 
 ### Question 6 : 
->[!TIP]
->Le shell prend désormais en charge les arguments de commande. Il utilise strtok pour l'analyse et execvp pour une exécution efficace des commandes avec les arguments spécifiés.
->
+>[!NOTE]
+>Le shell prend désormais en charge les arguments de commande. Il utilise strtok pour l'analyse et execvp pour une exécution efficace des commandes avec les arguments spécifiés.  
+>Pour cela nous divisons en deux la partie commande de la partie arguments pour ensuite utiliser le excvp au lieu du execlp.
+
+>[!TIPS]
+>Le code fonctionne trés bien même avec des commandes plus complexes comme nmap -p ...
+
 ![Screenshot](../capture/Q6.png)
-### Question 7 : 
+
+### Question 7 :
+>[!NOTE]
+>Pour la question 7 on utilise ce qui a été réalisé dans la question 6 mais on regarde si un argument correspond si un "argument" serait < ou >. Si tel est le cas on remplace < ou > par NULL pour différentier le fichier à créer (après) et la commande avec arguments (avant). Ensuite on différentie si le fichier est utilisé pour un input et un output afin de répondre à la demande. 
+
+>[!WARNING]
+>On pense bien à faire des levées d'erreurs afin de s'assurer qu'il n'y ait pas de soucis. 
+
 ![Screenshot](../capture/Q7.png)
 
+### Question 8 : 
+>[!NOTE]
+>La question 8 suit la question 7 ou on vérifie les arguments et si un argument correspond à | on fork deux processus. L'un est utilise pour la première partie de la commande et le deuxième pour l'autre partie ce qui permet d'éxecuter toute la commande sans soucis. 
+>On pense comme avant de bien penser à remplacer | par NULL afin de pas avoir d'erreur dans la determination des commande/arguments.  
+
+![Screenshot](../capture/Q8.png)

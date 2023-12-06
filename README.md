@@ -20,6 +20,7 @@ TP de programmation syteme : Weidle &amp; Lanfredi
 > 06/12 -> Continuation du TP de synthèse
 - [x] Question 6 :tada:
 - [x] Question 7 :tada:
+- [x] Question 8 :tada:
       
 ## Organisation du Github
 >[!IMPORTANT]
