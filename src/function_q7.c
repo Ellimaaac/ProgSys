@@ -1,3 +1,4 @@
+
 #include "function.h"
 #include <time.h>
 
@@ -82,14 +83,17 @@ void welcome() {
                     if (strcmp(args[i], "<") == 0) {
                         if (i + 1 < arg_count) {
                             file = open(args[i + 1], O_RDONLY);
+
                             if (file == -1) {
                                 perror("open");
                                 exit(EXIT_FAILURE);
                             }
+
                             if (dup2(file, STDIN_FILENO) == -1) {
                                 perror("dup2");
                                 exit(EXIT_FAILURE);
                             }
+
                             close(file); // Close the file descriptor after dup2
                             input_redirection = 1;
                             
@@ -102,7 +106,7 @@ void welcome() {
                     // Handle output redirection
                     else if (strcmp(args[i], ">") == 0) {
                         if (i + 1 < arg_count) {
-                            file = open(args[i + 1], O_CREAT | O_TRUNC | O_WRONLY, S_IRWXU);
+                            file = open(args[i + 1], O_CREAT | O_TRUNC | O_WRONLY);
 
                             if (file == -1) {
                                 perror("open");
@@ -112,6 +116,7 @@ void welcome() {
                                 perror("dup2");
                                 exit(EXIT_FAILURE);
                             }
+
                             close(file); // Close the file descriptor after dup2
                             output_redirection = 1;
 
