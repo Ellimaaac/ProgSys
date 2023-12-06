@@ -73,55 +73,67 @@ void welcome() {
                     args[arg_count++] = token;
                     token = strtok(NULL, " ");
                 }
+
                 args[arg_count] = NULL;
 
-		        int file, input_redirection, output_redirection, file_change;
 
-                for (int i = 1; i < arg_count; i++) {
+                // File for input and output redirection
+                char *inputFile = NULL;
+                char *outputFile = NULL;
+
+                // Iterate through the arguments to check for input and output redirection
+                for (size_t i = 0; i < arg_count; i++) {
+                    // Input redirection
                     if (strcmp(args[i], "<") == 0) {
-
-                        if (i + 1 < arg_count) {
-                            int file_change = open(file, O_RDONLY);
-                            if (file_change == -1) {
-                                perror("Erreur lors de l'ouverture du fichier d'entrée");
-                                exit(EXIT_FAILURE);
-                            }
-                            if (dup2(file_change, STDIN_FILENO) == -1) {
-                                perror("Erreur lors de la redirection de l'entrée standard");
-                                exit(EXIT_FAILURE);
-                            }
-
-                            file = args[i + 1];
-                            i++; // Go to next args after '<'
-                            close(file_change);
-
-                        } else {
-                            fprintf(stderr, "Erreur : Aucun fichier d'entrée spécifié après '<'\n");
-                            exit(EXIT_FAILURE);
-                        }
-                    } else if (strcmp(args[i], ">") == 0) {
-                        if (i + 1 < arg_count) {
-                            
-                            int file_change = open(file, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU|S_IRWXG|S_IRWXO);
-
-                            if (file_change == -1) {
-                                perror("Erreur lors de l'ouverture du fichier de sortie");
-                                exit(EXIT_FAILURE);
-                            }
-                            if (dup2(file_change, STDOUT_FILENO) == -1) {
-                                perror("Erreur lors de la redirection de la sortie standard");
-                                exit(EXIT_FAILURE);
-                            }
-
-                            file = args[i + 1];
-                            i++; // Go to next args after '>'
-                            close(file_change);
-
-                        } else {
-                            fprintf(stderr, "Erreur : Aucun fichier de sortie spécifié après '>'\n");
-                            exit(EXIT_FAILURE);
-                        }
+                        inputFile = args[i + 1];
+                        args[i] = NULL; // Remove '<' from the argument list
                     }
+                    
+                    // Output redirection
+                    else if (strcmp(args[i], ">") == 0) {
+                        outputFile = args[i + 1];
+                        args[i] = NULL; // Remove '>' from the argument list
+                    }
+                }
+
+                // Handle input redirection
+                if (inputFile != NULL) {
+                    // Open the input file for reading
+                    int fd = open(inputFile, O_RDONLY);
+                    if (fd == -1) {
+                        perror("Error: handleRedirection (Input)\nopen");
+                        exit(EXIT_FAILURE);
+                    }
+
+                    // Redirect standard input to the file
+                    if (dup2(fd, STDIN_FILENO) == -1) {
+                        perror("Error: handleRedirection (Input)\ndup2");
+                        close(fd);
+                        exit(EXIT_FAILURE);
+                    }
+                    
+                    // Close the file descriptor
+                    close(fd);
+                }
+
+                // Handle output redirection
+                if (outputFile != NULL) {
+                    // Open the output file for writing
+                    int fd = open(outputFile, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+                    if (fd == -1) {
+                        perror("Error: handleRedirection (Output)\nopen");
+                        exit(EXIT_FAILURE);
+                    }
+
+                    // Redirect standard output to the file
+                    if (dup2(fd, STDOUT_FILENO) == -1) {
+                        perror("Error: handleRedirection (Output)\ndup2");
+                        close(fd);
+                        exit(EXIT_FAILURE);
+                    }
+                    
+                    // Close the file descriptor
+                    close(fd);
                 }
 
                 execvp(args[0], args);
