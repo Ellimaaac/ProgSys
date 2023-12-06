@@ -75,57 +75,53 @@ void welcome() {
                 }
                 args[arg_count] = NULL;
 
-		        int file, input_redirection, output_redirection;
+		        int file, input_redirection, output_redirection, file_change;
 
                 for (int i = 1; i < arg_count; i++) {
                     if (strcmp(args[i], "<") == 0) {
+
                         if (i + 1 < arg_count) {
-                            input_redirection = 1;
+                            int file_change = open(file, O_RDONLY);
+                            if (file_change == -1) {
+                                perror("Erreur lors de l'ouverture du fichier d'entrée");
+                                exit(EXIT_FAILURE);
+                            }
+                            if (dup2(file_change, STDIN_FILENO) == -1) {
+                                perror("Erreur lors de la redirection de l'entrée standard");
+                                exit(EXIT_FAILURE);
+                            }
+
                             file = args[i + 1];
                             i++; // Go to next args after '<'
+                            close(file_change);
+
                         } else {
                             fprintf(stderr, "Erreur : Aucun fichier d'entrée spécifié après '<'\n");
                             exit(EXIT_FAILURE);
                         }
                     } else if (strcmp(args[i], ">") == 0) {
                         if (i + 1 < arg_count) {
-                            output_redirection = 1;
+                            
+                            int file_change = open(file, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU|S_IRWXG|S_IRWXO);
+
+                            if (file_change == -1) {
+                                perror("Erreur lors de l'ouverture du fichier de sortie");
+                                exit(EXIT_FAILURE);
+                            }
+                            if (dup2(file_change, STDOUT_FILENO) == -1) {
+                                perror("Erreur lors de la redirection de la sortie standard");
+                                exit(EXIT_FAILURE);
+                            }
+
                             file = args[i + 1];
                             i++; // Go to next args after '>'
+                            close(file_change);
+
                         } else {
                             fprintf(stderr, "Erreur : Aucun fichier de sortie spécifié après '>'\n");
                             exit(EXIT_FAILURE);
                         }
                     }
-                }
-
-                // Redirection of input entry if necessary
-                if (input_redirection) {
-                    int input_fd = open(file, O_RDONLY);
-                    if (input_fd == -1) {
-                        perror("Erreur lors de l'ouverture du fichier d'entrée");
-                        exit(EXIT_FAILURE);
-                    }
-                    if (dup2(input_fd, STDIN_FILENO) == -1) {
-                        perror("Erreur lors de la redirection de l'entrée standard");
-                        exit(EXIT_FAILURE);
-                    }
-                    close(input_fd);
-                }
-
-                // Redirection of output entry if necessary
-                if (output_redirection) {
-                    int output_fd = open(file, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU|S_IRWXG|S_IRWXO);
-
-                    if (output_fd == -1) {
-                        perror("Erreur lors de l'ouverture du fichier de sortie");
-                        exit(EXIT_FAILURE);
-                    }
-                    if (dup2(output_fd, STDOUT_FILENO) == -1) {
-                        perror("Erreur lors de la redirection de la sortie standard");
-                        exit(EXIT_FAILURE);
-                    }
-                    close(output_fd);
                 }
 
                 execvp(args[0], args);
