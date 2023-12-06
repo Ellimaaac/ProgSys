@@ -96,21 +96,3 @@ void welcome() {
         }
     }
 }
-
-void execut(char commande[MAXSIZE]) {
-    // Tokenize the command and arguments
-    char *token = strtok(commande, " ");
-    char *args[MAXSIZE];
-    int arg_count = 0;
-
-    while (token != NULL) {
-        args[arg_count++] = token;
-        token = strtok(NULL, " ");
-    }
-    args[arg_count] = NULL;
-
-    execvp(args[0], args);
-    // If execvp fails, print an error message
-    perror("execvp");
-    exit(EXIT_FAILURE);
-}
