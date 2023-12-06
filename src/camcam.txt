@@ -1,0 +1,14 @@
+camcam.txt
+cam.txt
+function.h
+function_q1.c
+function_q2.c
+function_q3.c
+function_q4.c
+function_q5.c
+function_q6.c
+function_q7.c
+function_q8.c
+main.c
+prog
+prrog

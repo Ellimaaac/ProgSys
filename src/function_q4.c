@@ -1,6 +1,6 @@
 #include "function.h"
 // Function to format and display a code with its value
-void afficherCode(char *text, int val){	
+void displayProg(char *text, int val){	
 	char buff[MAXSIZE];
 	sprintf(buff,text, val);// Format the code using sprintf
 	write(STDOUT_FILENO, buff, strlen(buff)); // Display the formatted code
@@ -76,11 +76,11 @@ void welcome() {
         // Display the exit status or signal information
         if (WIFEXITED(status))
         {
-		afficherCode("[code exit: %d | ",WEXITSTATUS(status));
+		displayProg("[code exit: %d | ",WEXITSTATUS(status));
 			}
 			else if (WIFSIGNALED(status))
 			{
-				afficherCode("[signal exit: %d | ", WTERMSIG(status));
+				displayProg("[signal exit: %d | ", WTERMSIG(status));
 			}
 		} 
     }
