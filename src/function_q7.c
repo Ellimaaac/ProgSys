@@ -82,7 +82,7 @@ void welcome() {
                         if (i + 1 < arg_count) {
                             input_redirection = 1;
                             file = args[i + 1];
-                            i++; // Passer à l'argument suivant après '<'
+                            i++; // Go to next args after '<'
                         } else {
                             fprintf(stderr, "Erreur : Aucun fichier d'entrée spécifié après '<'\n");
                             exit(EXIT_FAILURE);
@@ -91,7 +91,7 @@ void welcome() {
                         if (i + 1 < arg_count) {
                             output_redirection = 1;
                             file = args[i + 1];
-                            i++; // Passer à l'argument suivant après '>'
+                            i++; // Go to next args after '>'
                         } else {
                             fprintf(stderr, "Erreur : Aucun fichier de sortie spécifié après '>'\n");
                             exit(EXIT_FAILURE);
@@ -99,7 +99,7 @@ void welcome() {
                     }
                 }
 
-                // Redirection de l'entrée standard si nécessaire
+                // Redirection of input entry if necessary
                 if (input_redirection) {
                     int input_fd = open(file, O_RDONLY);
                     if (input_fd == -1) {
@@ -113,9 +113,10 @@ void welcome() {
                     close(input_fd);
                 }
 
-                // Redirection de la sortie standard si nécessaire
+                // Redirection of output entry if necessary
                 if (output_redirection) {
-                    int output_fd = open(file, O_CREAT | O_TRUNC | O_WRONLY, S_IRWXU);
+                    int output_fd = open(file, O_CREAT | O_TRUNC | O_RDWR, S_IRWXU|S_IRWXG|S_IRWXO);
+
                     if (output_fd == -1) {
                         perror("Erreur lors de l'ouverture du fichier de sortie");
                         exit(EXIT_FAILURE);
