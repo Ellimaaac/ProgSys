@@ -76,71 +76,55 @@ void welcome() {
                 args[arg_count] = NULL;
 
 		        int file, input_redirection, output_redirection;
-		
-               for (int i = 0; i < arg_count; i++) {
 
-                    // Handle input redirection
+                for (int i = 1; i < arg_count; i++) {
                     if (strcmp(args[i], "<") == 0) {
                         if (i + 1 < arg_count) {
-                            file = open(args[i + 1], O_RDONLY);
-
-                            if (file == -1) {
-                                perror("open");
-                                exit(EXIT_FAILURE);
-                            }
-
-                            if (dup2(file, STDIN_FILENO) == -1) {
-                                perror("dup2");
-                                exit(EXIT_FAILURE);
-                            }
-
-                            close(file); // Close the file descriptor after dup2
                             input_redirection = 1;
-                            
+                            file = args[i + 1];
+                            i++; // Passer à l'argument suivant après '<'
                         } else {
-                            fprintf(stderr, "Missing input file after '<'.\n");
+                            fprintf(stderr, "Erreur : Aucun fichier d'entrée spécifié après '<'\n");
                             exit(EXIT_FAILURE);
                         }
-
-                    }
-                    // Handle output redirection
-                    else if (strcmp(args[i], ">") == 0) {
+                    } else if (strcmp(args[i], ">") == 0) {
                         if (i + 1 < arg_count) {
-                            file = open(args[i + 1], O_CREAT | O_TRUNC | O_WRONLY);
-
-                            if (file == -1) {
-                                perror("open");
-                                exit(EXIT_FAILURE);
-                            }
-                            if (dup2(file, STDOUT_FILENO) == -1) {
-                                perror("dup2");
-                                exit(EXIT_FAILURE);
-                            }
-
-                            close(file); // Close the file descriptor after dup2
                             output_redirection = 1;
-
+                            file = args[i + 1];
+                            i++; // Passer à l'argument suivant après '>'
                         } else {
-                            fprintf(stderr, "Missing output file after '>'.\n");
+                            fprintf(stderr, "Erreur : Aucun fichier de sortie spécifié après '>'\n");
                             exit(EXIT_FAILURE);
                         }
                     }
                 }
 
-                // If there's no explicit output redirection, restore stdout
-                if (!output_redirection) {
-                    if (dup2(STDOUT_FILENO, STDOUT_FILENO) == -1) {
-                        perror("dup2");
+                // Redirection de l'entrée standard si nécessaire
+                if (input_redirection) {
+                    int input_fd = open(file, O_RDONLY);
+                    if (input_fd == -1) {
+                        perror("Erreur lors de l'ouverture du fichier d'entrée");
                         exit(EXIT_FAILURE);
                     }
+                    if (dup2(input_fd, STDIN_FILENO) == -1) {
+                        perror("Erreur lors de la redirection de l'entrée standard");
+                        exit(EXIT_FAILURE);
+                    }
+                    close(input_fd);
                 }
 
-                // If there's no explicit input redirection, restore stdin
-                if (!input_redirection) {
-                    if (dup2(STDIN_FILENO, STDIN_FILENO) == -1) {
-                        perror("dup2");
+                // Redirection de la sortie standard si nécessaire
+                if (output_redirection) {
+                    int output_fd = open(file, O_CREAT | O_TRUNC | O_WRONLY, S_IRWXU);
+                    if (output_fd == -1) {
+                        perror("Erreur lors de l'ouverture du fichier de sortie");
                         exit(EXIT_FAILURE);
                     }
+                    if (dup2(output_fd, STDOUT_FILENO) == -1) {
+                        perror("Erreur lors de la redirection de la sortie standard");
+                        exit(EXIT_FAILURE);
+                    }
+                    close(output_fd);
                 }
 
                 execvp(args[0], args);
