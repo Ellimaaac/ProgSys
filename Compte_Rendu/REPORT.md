@@ -79,7 +79,8 @@
 >On pense bien à faire des levées d'erreurs afin de s'assurer qu'il n'y ait pas de soucis. 
 
 ![Screenshot](../capture/Q7.png)
-
+Voici la création du fichier texte filelist contenant la liste de toutes les fichiers 
+![Screenshot](../capture/Q7_file.png)
 ### Question 8 : 
 >[!NOTE]
 >La question 8 suit la question 7 ou on vérifie les arguments et si un argument correspond à | on fork deux processus. L'un est utilise pour la première partie de la commande et le deuxième pour l'autre partie ce qui permet d'éxecuter toute la commande sans soucis. 
