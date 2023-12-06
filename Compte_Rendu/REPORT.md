@@ -66,7 +66,9 @@
 >Le shell prend désormais en charge les arguments de commande. Il utilise strtok pour l'analyse et execvp pour une exécution efficace des commandes avec les arguments spécifiés.
 >
 ![Screenshot](../capture/Q6.png)
-### Question 7 : 
+
+### Question 7 :
+
 ![Screenshot](../capture/Q7.png)
 
 ### Question 8 : 
