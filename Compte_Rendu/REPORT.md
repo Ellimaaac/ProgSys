@@ -60,3 +60,12 @@
 >Fortune avec un gros texte ~15ms  
 
 ![Screenshot](../capture/Q5.png)
+
+### Question 6 : 
+>[!TIP]
+>Le shell prend désormais en charge les arguments de commande. Il utilise strtok pour l'analyse et execvp pour une exécution efficace des commandes avec les arguments spécifiés.
+>
+![Screenshot](../capture/Q6.png)
+### Question 7 : 
+![Screenshot](../capture/Q7.png)
+
