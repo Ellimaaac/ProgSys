@@ -1,4 +1,5 @@
 #include "function.h"
+#include <time.h>
 
 // Function to format and display a code with its value
 void afficherCode(char *text, int val) {
@@ -62,24 +63,37 @@ void welcome() {
                 exit(EXIT_FAILURE);
 
             } else {
-                char **new_buf = malloc(argc * sizeof(char*));
+                // Tokenize the command and arguments
+                char *token = strtok(commande, " ");
+                char *args[MAXSIZE];
+                int arg_count = 0;
+
+                while (token != NULL) {
+                    args[arg_count++] = token;
+                    token = strtok(NULL, " ");
+                }
+                args[arg_count] = NULL;
+
+
+                char **new_buf = malloc(arg_count * sizeof(char*));
 		        int file;
 		
-                for (int i = 0; i < argc; i++) {
+                for (int i = 0; i < arg_count; i++) {
                     // Gère la redirection des commandes
-                    if (strcmp(buf[i], ">") == 0) {
-                        file = open(buf[i + 1], O_WRONLY | O_TRUNC);
+                    if (strcmp(args[i], ">") == 0) {
+                        file = open(args[i + 1], O_CREAT | O_TRUNC | O_WRONLY, S_IRWXU);
                         if (file == -1) {
                             perror("file");
                             exit(EXIT_FAILURE);
                         }
+                        
                         if (dup2(file, STDOUT_FILENO) == -1) {
                             perror("dup2");
                             exit(EXIT_FAILURE);
                         }
                         break;
-                    } else if (strcmp(buf[i], "<") == 0) {
-                        file = open(buf[i + 1], O_RDONLY);
+                    } else if (strcmp(args[i], "<") == 0) {
+                        file = open(args[i + 1], O_RDONLY);
                         if (file == -1) {
                             perror("file");
                             exit(EXIT_FAILURE);
@@ -90,14 +104,13 @@ void welcome() {
                         }
                         break;
                     }
-                    /* les arg de la commandes avant les symboles < ou >
-                    sont copiés dans un nouveau tableau pour être éxécutés */
-                    new_buf[i] = malloc(strlen(buf[i]));
-                    strcpy(new_buf[i], buf[i]);
+
                 }
-                close(file);
-                execvp(new_buf[0], new_buf); 
-                exit(EXIT_SUCCESS);
+
+                execvp(args[0], args);
+                // If execvp fails, print an error message
+                perror("execvp");
+                exit(EXIT_FAILURE);
             }
         } else {
             // Wait for the child process to finish
